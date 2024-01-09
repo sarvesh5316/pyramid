@@ -25,10 +25,16 @@ class _NavigationBottomBarState extends State<NavigationBottomBar> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: widgetOptions.elementAt(selectedIndex),
+      body: Stack(
+        children: [
+          widgetOptions.elementAt(selectedIndex),
+        ],
+      ),
       bottomNavigationBar: Container(
+        // padding: EdgeInsets.symmetric(horizontal: 15),
         decoration: BoxDecoration(
-          color: Colors.white,
+          borderRadius: BorderRadius.circular(25),
+          color: Colors.black,
           boxShadow: [
             BoxShadow(
               blurRadius: 20,
@@ -36,45 +42,43 @@ class _NavigationBottomBarState extends State<NavigationBottomBar> {
             )
           ],
         ),
-        child: SafeArea(
-          child: Container(
-            decoration: BoxDecoration(borderRadius: BorderRadius.circular(50)),
-            padding: const EdgeInsets.symmetric(horizontal: 15.0, vertical: 8),
-            child: GNav(
-              rippleColor: Color(0xFFF6F2F2),
-              hoverColor: Colors.grey[100]!,
-              gap: 8,
-              activeColor: Colors.black,
-              iconSize: 24,
-              padding: EdgeInsets.symmetric(horizontal: 20, vertical: 12),
-              duration: Duration(milliseconds: 400),
-              tabBackgroundColor: Color(0xFFBBF246),
-              color: Colors.black,
-              tabs: [
-                GButton(
-                  icon: Icons.home,
-                  text: 'Home',
-                ),
-                GButton(
-                  icon: Icons.rocket_launch_outlined,
-                  text: 'Explore',
-                ),
-                GButton(
-                  icon: Icons.analytics_outlined,
-                  text: 'Stats',
-                ),
-                GButton(
-                  icon: Icons.person_outline,
-                  text: 'Profile',
-                ),
-              ],
-              selectedIndex: selectedIndex,
-              onTabChange: (index) {
-                setState(() {
-                  selectedIndex = index;
-                });
-              },
-            ),
+        child: Container(
+          decoration: BoxDecoration(borderRadius: BorderRadius.circular(50)),
+          padding: const EdgeInsets.symmetric(horizontal: 15.0, vertical: 8),
+          child: GNav(
+            rippleColor: Color(0xFFF6F2F2),
+            hoverColor: Colors.grey[100]!,
+            gap: 8,
+            activeColor: Colors.black,
+            iconSize: 24,
+            padding: EdgeInsets.symmetric(horizontal: 20, vertical: 12),
+            duration: Duration(milliseconds: 400),
+            tabBackgroundColor: Color(0xFFBBF246),
+            color: Colors.white,
+            tabs: [
+              GButton(
+                icon: Icons.home,
+                text: 'Home',
+              ),
+              GButton(
+                icon: Icons.rocket_launch_outlined,
+                text: 'Explore',
+              ),
+              GButton(
+                icon: Icons.analytics_outlined,
+                text: 'Stats',
+              ),
+              GButton(
+                icon: Icons.person_outline,
+                text: 'Profile',
+              ),
+            ],
+            selectedIndex: selectedIndex,
+            onTabChange: (index) {
+              setState(() {
+                selectedIndex = index;
+              });
+            },
           ),
         ),
       ),
